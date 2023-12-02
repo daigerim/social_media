@@ -1,6 +1,8 @@
 from django.db import models
 from userapp.models import CustomUser
 from tagapp.models import Tag
+from commentapp.models import Comment
+from likeapp.models import PostLike
 
 class Post(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -8,10 +10,13 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     likes_count = models.IntegerField(default=0)
     comments_count = models.IntegerField(default=0)
+    post_image = models.ImageField(upload_to='postpic', null=True, blank=True)
     tags = models.ManyToManyField(Tag)
+    comments = models.ManyToManyField(Comment)
+    likes = models.ManyToManyField(PostLike)
 
     def __str__(self):
-        return "Post by: " + self.author.username + "at " + self.created_at
+        return "Post by: " + self.author.username + " at " + str(self.created_at)
 
 
 

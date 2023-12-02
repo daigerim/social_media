@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'userapp',
     'postapp',
     'tagapp',
+    'likeapp',
+    'commentapp',
+
 ]
 
 MIDDLEWARE = [

@@ -14,11 +14,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     bio = models.CharField(max_length=150)
     profile_picture = models.ImageField(upload_to='profilepic', blank=True, null=True)
     data_joined = models.DateTimeField(auto_now_add=True)
-    last_seen = models.DateTimeField(auto_now=True)
+    followers_count = models.IntegerField(default=0)
+    following_count = models.IntegerField(default=0)
+    post_count = models.IntegerField(default=0)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
@@ -31,8 +32,5 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
-
-
-
 
 

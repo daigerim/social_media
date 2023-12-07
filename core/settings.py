@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'tagapp',
     'likeapp',
     'commentapp',
+    'followingapp',
+    'rest_framework',
 
 ]
 

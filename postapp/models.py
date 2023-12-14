@@ -9,7 +9,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     likes_count = models.IntegerField(default=0)
     comments_count = models.IntegerField(default=0)
-    post_image = models.ImageField(upload_to='postpic', null=True, blank=True)
+    post_image = models.ImageField(upload_to='postpic')
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):

@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'commentapp',
     'followingapp',
     'rest_framework',
-
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

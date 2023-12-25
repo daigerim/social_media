@@ -18,9 +18,39 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework.permissions import AllowAny
+
+
+SchemaView = get_schema_view(
+    info=openapi.Info(
+        title='Social Media',
+        default_version='v1.0',
+        description='This is social media app that allows user to post something and interact with other people',
+        terms_of_service='',
+        contact=openapi.Contact(name='Aigerim Dairanbek', url='', email='dairanbekaigerim@gmail.com'),
+        license=openapi.License(name='', url='')
+    ),
+    patterns=[
+        path('user/', include('userapp.urls')),
+        path('reaction/', include('likeapp.urls')),
+        path('posts/', include('postapp.urls')),
+        path('comments/', include('commentapp.urls')),
+        path('tags/', include('tagapp.urls')),
+        path('following/', include('followingapp.urls')),
+    ],
+    public=True,
+    permission_classes=[AllowAny, ]
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('userapp.urls')),
     path('reaction/', include('likeapp.urls')),
     path('posts/', include('postapp.urls')),
+    path('comments/', include('commentapp.urls')),
+    path('tags/', include('tagapp.urls')),
+    path('following/', include('followingapp.urls')),
+    path('swagger/', SchemaView.with_ui()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

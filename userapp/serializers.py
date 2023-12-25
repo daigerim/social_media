@@ -11,6 +11,11 @@ class UserCreateSerializer(ModelSerializer):
         user.save()
         return user
 
+class AfterCreateUserSerializer(ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'username']
+
 class UserSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
@@ -20,3 +25,8 @@ class UserUpdateSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['username', 'bio', 'profile_picture']
+
+class FollowedUserSerializer(ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'profile_picture']
